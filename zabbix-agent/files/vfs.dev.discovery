@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby                                                                                                                                                                 
+
+require 'json'
+iostat  = `iostat`.chomp
+devices = iostat.split("\n")[6..-1].map do |line|
+  { "{#DEVNAME}" => line.split.first }
+end
+puts({ "data" => devices }.to_json)

@@ -1,0 +1,25 @@
+---
+
+- name: Install package
+  apt: name={{ zabbix_agent_package }} state=present
+  tags:
+    - zabbix-agent
+
+- name: Create user parameters directory
+  file: state=directory path={{ zabbix_agent_user_parameters_dir }} owner=root group=root mode=0755
+  tags:
+    - zabbix-agent
+
+- name: Create vfs.dev.discovery file
+  copy: src=vfs.dev.discovery dest={{ zabbix_agent_user_parameters_dir }}/vfs.dev.discovery owner=root group=root mode=0755
+  tags:
+    - zabbix-agent
+    
+- name: Create configuration file
+  template: src=zabbix_agentd.conf.j2 dest=/etc/zabbix/zabbix_agentd.conf owner=zabbix group=zabbix mode=0644
+  notify:
+    - restart zabbix-agent
+  tags:
+    - zabbix-agent
+
+- include: logstash.yml

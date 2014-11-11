@@ -1,0 +1,20 @@
+---
+
+zabbix_agent_package: zabbix-agent
+
+zabbix_agent_home_dir: /var/run/zabbix
+zabbix_agent_log_dir: /var/log/zabbix-agent
+zabbix_agent_user_parameters_dir: /etc/zabbix/user_parameters
+
+zabbix_server_host: localhost
+
+zabbix_agent_enable_remote_commands: 0
+zabbix_agent_unsafe_user_parameters: 0
+zabbix_agent_user_parameters: []
+
+# zabbix_agent_hostname: example.com
+# zabbix_agent_metadata: foobarbaz
+# zabbix_agent_metadata_item: system.foobarbaz
+
+zabbix_agent_use_logstash: true
+logstash_conf_dir: /etc/logstash/conf.d
